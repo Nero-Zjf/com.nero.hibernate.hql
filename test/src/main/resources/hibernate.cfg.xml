@@ -1,0 +1,54 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--指定连接数据库的驱动-->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!--指定连接数据库的url-->
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate_doc</property>
+        <!--连接数据库的用户名-->
+        <property name="connection.username">basic</property>
+        <!--连接数据库的密码-->
+        <property name="connection.password">000000</property>
+        <!--指定数据库方言 以下为Mysql的方言-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!--启用hibernate的自动-->
+        <property name="current_session_context_class">thread</property>
+        <!--指定C3P0连接池的最大连接数-->
+        <property name="hibernate.c3p0.max_size">20</property>
+        <!--指定C3P0连接池的最小连接数-->
+        <property name="hibernate.c3p0.min_size">5</property>
+        <!--指定C3P0连接池中连接的超时时长-->
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <!--指定C3P0连接池里最大缓存多少个statement对象-->
+        <property name="hibernate.c3p0.max_statements">100</property>
+
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <property name="hibernate.c3p0.acquire_increment">2</property>
+
+
+        <!-- 关闭二级缓存  -->
+        <property name="cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</property>
+
+        <!--是否显示生成的SQL true or false -->
+        <property name="show_sql">true</property>
+        <!--是否将SQL脚本进行格式化后再输出 true or false-->
+        <property name="hibernate.format_sql">false</property>
+        <!--是否在生成的SQL添加有助于调试的注释 true or false-->
+        <property name="use_sql_comments">false</property>
+
+
+        <!--指定是否需要Hibernate根据持久化类自动创建数据表 -->
+        <!--update 表示Hibernate会根据持久化类的映射关系来创建数据表-->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!--包含持久类的映射文件 可以配置多个mapping-->
+        <!--如果配置持久化类使用class属性，配置持久化类的映射文件使用resource属性-->
+        <mapping class="po.Person"/>
+        <mapping class="po.Address"/>
+        <mapping class="po.IdCard"/>
+        <!--<mapping resource="/test/hbm/User.hbm.xml"/>-->
+
+</session-factory>
+</hibernate-configuration>
